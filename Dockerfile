@@ -8,6 +8,11 @@ FROM fedora:latest
 
 MAINTAINER gmollison <grapesfrog@gmail.com>
 
+# Update the system
+RUN yum -y update;yum clean all
+
+
+
 ##########################################################
 # Install Java JDK
 ##########################################################
