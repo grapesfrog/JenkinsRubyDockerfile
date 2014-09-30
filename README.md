@@ -14,10 +14,10 @@ TODO:
 
 
 		To build image :
-		docker build -t JenkinsRuby .
+		docker build -t jenkinsruby .
 
 		To run container:
-		Docker run -p 8080:8080 -d -t JenkinsRuby
+		Docker run -p 8080:8080 -d -t jenkinsruby
 
 
 

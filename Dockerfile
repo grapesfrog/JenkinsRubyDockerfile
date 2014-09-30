@@ -26,8 +26,8 @@ ENV JAVA_HOME /usr/lib/jvm/jre
 RUN yum install -y   g++  which curl  unzip openssl openssl-devel make gcc-c++ glibc-devel
 
 # install ruby and nodejs
-RUN yum  -y install ruby
-RUN yum  -y install nodejs npm
+RUN yum  -y install ruby && \
+    yum  -y install nodejs npm
 
 
 #####################################
@@ -42,8 +42,7 @@ RUN gem install rspec rake rails bundler ci_reporter --no-document
 
 ADD http://pkg.jenkins-ci.org/redhat/jenkins.repo /etc/yum.repos.d/jenkins.repo
 RUN rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
-RUN yum -y install jenkins
-RUN yum -y install git
+RUN yum -y install jenkins git
 
 ENV JENKINS_HOME  /usr/local/jenkins
 ########################################################################
@@ -64,10 +63,8 @@ ADD https://updates.jenkins-ci.org/latest/rake.hpi var/lib/jenkins/plugins/rake.
 ADD https://updates.jenkins-ci.org/latest/rbenv.hpi /var/lib/jenkins/plugins/rbenv.hpi
 ADD https://updates.jenkins-ci.org/latest/rvm.hpi /var/lib/jenkins/plugins/rvm.hpi
 
-RUN chown -R jenkins:jenkins /var/lib/jenkins/plugins
-
-# Install RVM
-RUN  curl -L https://get.rvm.io | bash -s stable --ruby
+RUN chown -R jenkins:jenkins /var/lib/jenkins/plugins && \
+	curl -L https://get.rvm.io | bash -s stable --ruby
 
 
 # for main web interface:
